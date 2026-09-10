@@ -14,12 +14,18 @@ export default function Books() {
         {harryPotterBooks.map((book) => (
           <li
             key={book.id}
-            className="flex flex-col items-center justify-center max-w-75"
+            className={`flex flex-col items-center justify-center max-w-75 ${book.soldOut ? "grayscale-100" : ""}`}
           >
             <img className="h-100" src={book.cover} alt="book image" />
-            <p className="text-center">{book.title}</p>
-            <p className="text-center">{book.description}</p>
-            <span>{book.releaseDate}</span>
+            {book.soldOut ? (
+              <p className="h-30">Sold out</p>
+            ) : (
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-center">{book.title}</p>
+                <p className="text-center">{book.description}</p>
+                <span>{book.releaseDate}</span>
+              </div>
+            )}
           </li>
         ))}
       </ul>
