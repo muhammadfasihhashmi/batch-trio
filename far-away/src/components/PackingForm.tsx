@@ -7,29 +7,36 @@
 5. on submiting we creata another event on form submit button that will execute in the seo handler funtion and we will use the state variable to access the current value of the input field and perform any necessary actions with it. and prevent the default form submission behavior by calling event.preventDefault() in the submit handler function.
 */
 
-import { useState } from "react";
+import { useState, type ChangeEvent, type MouseEvent } from "react";
+import type { Item } from "../App";
 
-function PackingForm() {
+function PackingForm({
+  setItemList,
+}: {
+  setItemList: React.Dispatch<React.SetStateAction<Item[]>>;
+}) {
   // step 1
   const [quantity, setQuantity] = useState(1);
   const [itemName, setItemName] = useState("");
 
-  function handleQuantityChange(event) {
-    setQuantity(event.target.value);
+  function handleQuantityChange(event: ChangeEvent<HTMLSelectElement>) {
+    setQuantity(Number(event.target.value));
   }
 
-  function handleItemNameChange(event) {
+  function handleItemNameChange(event: ChangeEvent<HTMLInputElement>) {
     setItemName(event.target.value);
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     // You can perform any necessary actions with the form data here
     const finalItem = {
       quantity,
       itemName,
     };
-    console.log("Final item:", finalItem);
+    setItemList((prevItemList) => [...prevItemList, finalItem]);
+    setItemName(""); // Clear the item name input field after submission
+    setQuantity(1); // Reset quantity to 1 after submission
   }
 
   return (

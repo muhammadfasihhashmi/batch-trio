@@ -1,7 +1,9 @@
-import React from "react";
+import type { Item } from "../App";
 
-function PackingList() {
-  return <div></div>;
+function PackingList({ itemList }: { itemList: Item[] }) {
+  console.log(itemList);
+
+  return <div>packing list</div>;
 }
 
 export default PackingList;
