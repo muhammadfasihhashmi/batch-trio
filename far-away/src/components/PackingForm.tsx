@@ -31,6 +31,7 @@ function PackingForm({
     event.preventDefault();
     // You can perform any necessary actions with the form data here
     const finalItem = {
+      id: Date.now(),
       quantity,
       itemName,
     };

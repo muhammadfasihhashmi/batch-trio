@@ -4,6 +4,7 @@ import PackingForm from "./components/PackingForm";
 import PackingList from "./components/PackingList";
 
 export type Item = {
+  id: number;
   quantity: number;
   itemName: string;
 };
