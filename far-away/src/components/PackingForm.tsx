@@ -34,6 +34,7 @@ function PackingForm({
       id: Date.now(),
       quantity,
       itemName,
+      isPacked: false,
     };
     setItemList((prevItemList) => [...prevItemList, finalItem]);
     setItemName(""); // Clear the item name input field after submission

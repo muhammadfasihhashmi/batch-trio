@@ -1,7 +1,13 @@
 import { Trash } from "lucide-react";
 import type { Item } from "../App";
 
-function PackingList({ itemList }: { itemList: Item[] }) {
+function PackingList({
+  itemList,
+  handlePackedStatus,
+}: {
+  itemList: Item[];
+  handlePackedStatus: (id: number) => void;
+}) {
   return (
     <div className=" max-w-2xl mx-auto rounded-2xl my-5 max-h-[500px] overflow-y-auto">
       <ul className="flex flex-col justify-center gap-4 p-10">
@@ -12,7 +18,11 @@ function PackingList({ itemList }: { itemList: Item[] }) {
           >
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <input type="checkbox" className="w-6 h-6 accent-green-500" />
+                <input
+                  type="checkbox"
+                  onChange={() => handlePackedStatus(item.id)}
+                  className="w-6 h-6 accent-green-500"
+                />
                 <p className="text-white text-2xl font-semibold">
                   <span>{item.quantity}</span>
                   {item.itemName}

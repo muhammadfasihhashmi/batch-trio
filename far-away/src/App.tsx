@@ -7,15 +7,28 @@ export type Item = {
   id: number;
   quantity: number;
   itemName: string;
+  isPacked: boolean;
 };
 
 function App() {
   const [itemList, setItemList] = useState<Item[]>([]);
+  console.log(itemList);
+
+  function handlePackedStatus(id: number) {
+    setItemList(
+      itemList.map((item) =>
+        item.id === id ? { ...item, isPacked: !item.isPacked } : item,
+      ),
+    );
+  }
   return (
     <>
       <Header />
       <PackingForm setItemList={setItemList} />
-      <PackingList itemList={itemList} />
+      <PackingList
+        itemList={itemList}
+        handlePackedStatus={handlePackedStatus}
+      />
     </>
   );
 }
